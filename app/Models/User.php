@@ -33,4 +33,14 @@ class User extends Authenticatable
         'remember_token',
         'is_admin',
     ];
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
 }
