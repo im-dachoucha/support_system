@@ -9,13 +9,14 @@
                 <li><a href="{{ route('auth.register') }}" class="btn btn-primary">Register</a></li>
             @endguest
             @auth
-                <li><a class="">Hi, {{ auth()->user()->username }}</a></li>
                 @admin
                 <span>Admin</span>
                 @endadmin
                 @user
-                <span>user</span>
+                <li><a href="{{ route('tickets.create') }}" class="btn btn-ghost normal-case">Add a ticket</a></li>
+                <li><a href="{{ route('tickets.index') }}" class="btn btn-ghost normal-case">Browse my tickets</a></li>
                 @enduser
+                <li><a>Hi, {{ auth()->user()->username }}</a></li>
                 <form action="{{ route('auth.logout') }}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-primary">Logout</button>
