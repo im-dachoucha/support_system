@@ -13,9 +13,9 @@ class TicketController extends Controller
     public function index()
     {
         if(Blade::check('admin')){
-            return view('tickets.index', ["tickets" => Ticket::paginate(5)]);
+            return view('tickets.index', ["tickets" => Ticket::orderby('created_at', 'desc')->paginate(5)]);
         }
-        return view('tickets.index', ["tickets" => Ticket::where('user_id', auth()->user()->id)->paginate(5)]);
+        return view('tickets.index', ["tickets" => Ticket::where('user_id', auth()->user()->id)->orderby('created_at', 'desc')->paginate(5)]);
         // return view('tickets.index', ["tickets" => auth()->user()->tickets]);
     }
 
