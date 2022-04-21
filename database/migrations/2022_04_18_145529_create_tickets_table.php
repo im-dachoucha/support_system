@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('service_id')->constrained();
-            $table->foreignId('status_id')->constrained();
+            $table->foreignId('user_id')->nullable()->constrained()->onDelete('set null')->onUpdate('set null');
+            $table->foreignId('service_id')->nullable()->constrained()->onDelete('set null')->onUpdate('set null');
+            $table->foreignId('status_id')->nullable()->constrained()->onDelete('set null')->onUpdate('set null');
             $table->timestamps();
         });
     }
