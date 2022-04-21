@@ -13,7 +13,8 @@
         @else
             @foreach ($tickets as $ticket)
                 <div class="p-3 border border-gray-300 rounded-md">
-                    <div class="flex justify-between items-center">
+                    <div
+                        class="flex flex-col gap-3 justify-center items-start md:flex-row md:justify-between md:items-center">
                         <h1 class="text-3xl">
                             {{ $ticket->title }}
                         </h1>
@@ -46,6 +47,7 @@
                         </form>
                     @endif
                     @enduser
+                    <p class="text-sm font-normal">{{ $ticket->created_at->diffForHumans() }}</p>
                 </div>
             @endforeach
         @endif
