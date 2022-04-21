@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Blade;
 
 class TicketController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('user')->only('create', 'store', 'status');
+    }
+
     public function index()
     {
         if(Blade::check('admin')){
