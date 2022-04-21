@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnswerController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -35,6 +36,13 @@ Route::post('logout', [LogoutController::class, 'index'])->name('auth.logout');
 // * ticket routes
 Route::group(['middleware' => 'auth', 'prefix' => 'tickets'], function () {
     Route::get('', [TicketController::class, 'index'])->name('tickets.index');
+
     Route::get('create', [TicketController::class, 'create'])->name('tickets.create');
     Route::post('create', [TicketController::class, 'store']);
+
+    Route::get('{ticket_id}/answer', [TicketController::class, 'answer'])->name('tickets.answer');
+
+    Route::post("{ticket_id}/status", [TicketController::class, 'status'])->name('tickets.status');
+
+    Route::post('answer', [AnswerController::class, 'store'])->name('answer.store');
 });

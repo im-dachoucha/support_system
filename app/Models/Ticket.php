@@ -34,6 +34,6 @@ class Ticket extends Model
 
     public function answers()
     {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class)->orderby('created_at', 'desc');
     }
 }

@@ -56,7 +56,6 @@
                         </label>
                         <textarea name="content" id="content" cols="30" rows="10" class="textarea focus:textarea-primary textarea-bordered h-24"
                             placeholder="Content">{{ old('content') }}</textarea>
-
                         @error('content')
                             <p class="text-red-500 text-sm">{{ $message }}</p>
                         @enderror

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Service;
 use App\Models\Ticket;
 use Illuminate\Http\Request;
@@ -12,10 +13,10 @@ class TicketController extends Controller
     public function index()
     {
         if(Blade::check('admin')){
-            return view('tickets.index', ["tickets" => Ticket::get(1)]);
+            return view('tickets.index', ["tickets" => Ticket::paginate(5)]);
         }
-        // return view('tickets.index', ["tickets" => Ticket::where('user_id', auth()->user()->id)->paginate(1)]);
-        return view('tickets.index', ["tickets" => auth()->user()->tickets]);
+        return view('tickets.index', ["tickets" => Ticket::where('user_id', auth()->user()->id)->paginate(5)]);
+        // return view('tickets.index', ["tickets" => auth()->user()->tickets]);
     }
 
     public function create(){
@@ -37,6 +38,22 @@ class TicketController extends Controller
             'status_id' => 1,
         ]);
 
+        return redirect()->route('tickets.index');
+    }
+
+    public function answer($ticket_id){
+        $ticket = Ticket::findOrFail($ticket_id);
+        $answers = Answer::where("ticket_id", $ticket_id)->paginate(5);
+        return view('tickets.answer', ['ticket' => $ticket, 'answers' => $answers]);
+    }
+
+    public function status(Request $request, $ticket_id){
+        $this->validate(request(), [
+            'status_id' => 'required|integer|exists:statuses,id',
+        ]);
+        $ticket = Ticket::findOrFail($ticket_id);
+        $ticket->status_id = $request->status_id;
+        $ticket->save();
         return redirect()->route('tickets.index');
     }
 }
