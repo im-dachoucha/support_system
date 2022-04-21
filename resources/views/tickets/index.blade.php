@@ -4,11 +4,25 @@
 
 
 @section('content')
+    @error('message')
+        <div class="alert shadow-lg">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                    class="stroke-info flex-shrink-0 w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>{{ $message }}</span>
+            </div>
+        </div>
+    @enderror
     <div class="mt-10 p-3 flex flex-col gap-5 min-h-[70vh] max-w-xl mx-auto border border-primary rounded-md">
         @if (!count($tickets))
             <div class="flex flex-col h-[50vh] justify-evenly">
-                <h1 class="text-3xl text-center font-semibold">You have not created a ticket yet</h1>
+                <h1 class="text-3xl text-center font-semibold">Such emtpy!!!</h1>
+                @user
                 <a class="btn btn-primary" href="{{ route('tickets.create') }}">Create your first ticket</a>
+                @enduser
             </div>
         @else
             @foreach ($tickets as $ticket)

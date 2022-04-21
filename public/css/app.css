@@ -2965,6 +2965,9 @@ html {
 .stroke-current {
   stroke: currentColor;
 }
+.stroke-info {
+  stroke: hsl(var(--in));
+}
 .p-0 {
   padding: 0px;
 }
