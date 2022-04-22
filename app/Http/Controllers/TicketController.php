@@ -48,7 +48,7 @@ class TicketController extends Controller
 
     public function answer($ticket_id){
         $ticket = Ticket::findOrFail($ticket_id);
-        $answers = Answer::where("ticket_id", $ticket_id)->paginate(5);
+        $answers = Answer::where("ticket_id", $ticket_id)->paginate(4);
         return view('tickets.answer', ['ticket' => $ticket, 'answers' => $answers]);
     }
 
