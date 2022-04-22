@@ -42,7 +42,11 @@
         </div>
         <div class="w-full flex flex-col gap-3 items-center">
             @foreach ($services as $service)
-                <div class="w-full max-w-md">{{ $service->entitled }}</div>
+                <div class="w-full max-w-md flex justify-between">
+                    <h1 class="text-xl">{{ $service->entitled }}</h1>
+                    <div class="manage btn btn-md" data-id="{{ $service->id }}"
+                        data-entitled="{{ $service->entitled }}">manage</div>
+                </div>
             @endforeach
             {{-- <div class="w-full max-w-md">service 2</div> --}}
             <div class="w-full max-w-md">
@@ -50,4 +54,14 @@
             </div>
         </div>
     </div>
+    <script>
+        const manage = document.querySelectorAll('.manage');
+        manage.forEach(element => {
+            element.addEventListener('click', (e) => {
+                const id = e.target.dataset.id;
+                const entitled = e.target.dataset.entitled
+                console.log(id, entitled);
+            });
+        });
+    </script>
 @endsection
