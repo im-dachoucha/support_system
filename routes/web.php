@@ -53,10 +53,12 @@ Route::group(['middleware' => 'auth', 'prefix' => 'tickets'], function () {
 Route::group(['middleware' => 'admin', 'prefix' => 'services'], function () {
     Route::get('', [ServiceController::class, 'index'])->name('services.index');
     Route::post('create', [ServiceController::class, 'store'])->name('services.create');
+    Route::post('update', [ServiceController::class, 'update'])->name('services.update');
 });
 
 // * status routes
 Route::group(['middleware' => 'admin', 'prefix' => 'statuses'], function () {
     Route::get('', [StatusController::class, 'index'])->name('statuses.index');
     Route::post('create', [StatusController::class, 'store'])->name('statuses.create');
+    Route::post('update', [StatusController::class, 'update'])->name('statuses.update');
 });

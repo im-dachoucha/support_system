@@ -28,4 +28,19 @@ class ServiceController extends Controller
 
         return back();
     }
+
+    public function update(Request $request)
+    {
+        $this->validate($request, [
+            'entitled' => 'required|string|min:5|max:20|unique:services,entitled,'
+        ]);
+
+        $service = Service::findOrFail($request->id);
+
+        $service->update([
+            'entitled' => $request->entitled
+        ]);
+
+        return back();
+    }
 }

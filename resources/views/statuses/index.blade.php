@@ -42,7 +42,7 @@
         </div>
         <div class="w-full flex flex-col gap-3 items-center">
             @foreach ($statuses as $status)
-                <div class="w-full max-w-md flex justify-between">
+                <div class="w-full max-w-md flex justify-between items-center">
                     <h1 class="text-xl">{{ $status->entitled }}</h1>
                     <div class="manage btn btn-md" data-id="{{ $status->id }}" data-entitled="{{ $status->entitled }}">
                         manage</div>
