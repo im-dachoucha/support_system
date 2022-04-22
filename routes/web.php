@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TicketController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,4 +53,10 @@ Route::group(['middleware' => 'auth', 'prefix' => 'tickets'], function () {
 Route::group(['middleware' => 'admin', 'prefix' => 'services'], function () {
     Route::get('', [ServiceController::class, 'index'])->name('services.index');
     Route::post('create', [ServiceController::class, 'store'])->name('services.create');
+});
+
+// * status routes
+Route::group(['middleware' => 'admin', 'prefix' => 'statuses'], function () {
+    Route::get('', [StatusController::class, 'index'])->name('statuses.index');
+    Route::post('create', [StatusController::class, 'store'])->name('statuses.create');
 });

@@ -14,7 +14,7 @@
                     <label tabindex="0" class="btn m-1">Manage</label>
                     <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
                         <li><a href="{{ route('services.index') }}">Services</a></li>
-                        <li><a href="{{ route('services.index') }}">Status</a></li>
+                        <li><a href="{{ route('statuses.index') }}">Status</a></li>
                         <li><a href="{{ route('services.index') }}">Users</a></li>
                     </ul>
                 </div>
